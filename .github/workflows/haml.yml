@@ -12,7 +12,7 @@ jobs:
         with:
           ruby-version: '2.7.2'
       - run: gem install --no-doc 'haml_lint:>=0.36.0'
-      - run: files=$(git ls-files | grep -E "\.haml" | grep -vE "\.yml"; exit 0) && haml-lint $files --exclude-linter RuboCop --reporter progress --reporter json >> haml.json && cat haml.json
+      - run: files=$(git ls-files | grep -E "\.haml" | grep -vE "\.yml|_form.html.haml"; exit 0) && haml-lint $files --exclude-linter RuboCop --reporter progress --reporter json >> haml.json && cat haml.json
         id: haml
       - uses: duderman/rubocop-annotate-action@v0.1.0
         with:
